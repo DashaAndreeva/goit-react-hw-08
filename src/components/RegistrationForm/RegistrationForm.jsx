@@ -16,7 +16,7 @@ const RegisterUserSchema = Yup.object().shape({
     .email("You must enter a valid email address")
     .required("Email is required"),
   password: Yup.string()
-    .min(8, "Too short!")
+    .min(3, "Too short!")
     .max(50, "Too long!")
     .required("Password is required"),
 });
@@ -39,36 +39,47 @@ const RegistrationForm = () => {
     >
       <Form>
         <div>
-          <label htmlFor={nameId}>Name:</label>
-          <Field
-            type="text"
-            id={nameId}
-            name="name"
-            placeholder="Enter your name"
-          />
-          <ErrorMessage name="name" component="div" className={css.error} />
+          <div className={css["container"]}>
+            <label htmlFor={nameId}>Name</label>
+            <Field
+              type="text"
+              id={nameId}
+              name="name"
+              placeholder="Enter your name"
+              className={css["input"]}
+            />
+          </div>
+          <ErrorMessage name="name" component="div" />
         </div>
         <div>
-          <label htmlFor={emailId}>Email:</label>
-          <Field
-            type="email"
-            id={emailId}
-            name="email"
-            placeholder="Enter your email"
-          />
-          <ErrorMessage name="email" component="div" className={css.error} />
+          <div className={css["container"]}>
+            <label htmlFor={emailId}>Email</label>
+            <Field
+              type="email"
+              id={emailId}
+              name="email"
+              placeholder="Enter your email"
+              className={css["input"]}
+            />
+          </div>
+          <ErrorMessage name="email" component="div" />
         </div>
         <div>
-          <label htmlFor={passwordId}>Password:</label>
-          <Field
-            type="password"
-            id={passwordId}
-            name="password"
-            placeholder="Enter your password"
-          />
-          <ErrorMessage name="password" component="div" className={css.error} />
+          <div className={css["container"]}>
+            <label htmlFor={passwordId}>Password</label>
+            <Field
+              type="password"
+              id={passwordId}
+              name="password"
+              placeholder="Enter your password"
+              className={css["input"]}
+            />
+          </div>
+          <ErrorMessage name="password" component="div" />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit" className={css["button-subm"]}>
+          Register
+        </button>
       </Form>
     </Formik>
   );

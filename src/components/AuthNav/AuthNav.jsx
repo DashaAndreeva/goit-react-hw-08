@@ -10,7 +10,7 @@ const getNavLinkClass = ({ isActive }) =>
 
 const AuthNav = () => {
   return (
-    <div className={css.authNav}>
+    <div className={css["navigation"]}>
       <NavLink className={getNavLinkClass} to="/register">
         {" "}
         Register{" "}

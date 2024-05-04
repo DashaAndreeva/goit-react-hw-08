@@ -7,7 +7,7 @@ const ContactList = () => {
   const contacts = useSelector(selectFilteredContacts);
 
   return (
-    <ul className={css.contactList}>
+    <ul className={css["container-contacts"]}>
       {contacts.map((contact) => (
         <li className={css.contactItem} key={contact.id}>
           <Contact contacts={contact} />

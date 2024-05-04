@@ -12,12 +12,12 @@ const SearchBox = () => {
   };
 
   return (
-    <div className={css.searchForm}>
-      <p className={css.findField}>Find contacts by name or number:</p>
+    <div className={css["find-container"]}>
+      <p className={css["title-find"]}>Find contacts by name or number</p>
       <input
-        className={css.searchInput}
+        className={css["find-input"]}
         type="text"
-        placeholder="type..."
+        placeholder="Type name or number"
         value={value}
         onChange={handleChange}
       />

@@ -14,7 +14,7 @@ const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
-    <nav className={css.nav}>
+    <nav className={css["navigation"]}>
       <NavLink className={classNavLink} to="/">
         Home
       </NavLink>

@@ -12,7 +12,7 @@ const loginUserSchema = Yup.object().shape({
     .email("You must enter a valid email address")
     .required("Email is required"),
   password: Yup.string()
-    .min(8, "Too short!")
+    .min(3, "Too short!")
     .max(50, "Too long!")
     .required("Password is required"),
 });
@@ -34,26 +34,34 @@ const LoginForm = () => {
     >
       <Form>
         <div>
-          <label htmlFor={emailId}>Email:</label>
-          <Field
-            type="email"
-            id={emailId}
-            name="email"
-            placeholder="Enter your email"
-          />
+          <div className={css["container"]}>
+            <label htmlFor={emailId}>Email</label>
+            <Field
+              type="email"
+              id={emailId}
+              name="email"
+              placeholder="Enter your email"
+              className={css["input"]}
+            />
+          </div>
           <ErrorMessage name="email" component="div" className={css.error} />
         </div>
         <div>
-          <label htmlFor={passwordId}>Password:</label>
-          <Field
-            type="password"
-            id={passwordId}
-            name="password"
-            placeholder="Enter your password"
-          />
+          <div className={css["container"]}>
+            <label htmlFor={passwordId}>Password</label>
+            <Field
+              type="password"
+              id={passwordId}
+              name="password"
+              placeholder="Enter your password"
+              className={css["input"]}
+            />
+          </div>
           <ErrorMessage name="password" component="div" className={css.error} />
         </div>
-        <button type="submit">Log In</button>
+        <button type="submit" className={css["button-subm"]}>
+          Log In
+        </button>
       </Form>
     </Formik>
   );

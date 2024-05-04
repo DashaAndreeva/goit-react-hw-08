@@ -2,7 +2,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import * as Yup from "yup";
-import toast, { Toaster } from "react-hot-toast";
 import { useId } from "react";
 import css from "./ContactForm.module.css";
 
@@ -30,44 +29,37 @@ const ContactForm = () => {
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
           dispatch(addContact(values));
-          toast.success("Contact added successfully!");
           resetForm();
         }}
       >
         <Form>
-          <div>
-            <label htmlFor={nameId}>Name:</label>
+          <div className={css["input-add-contact"]}>
+            <label htmlFor={nameId}>Name</label>
             <Field
               type="text"
               id={nameId}
               name="name"
               placeholder="Enter your name"
+              className={css["input-only"]}
             />
-            <ErrorMessage name="name" component="div" className={css.error} />
+            <ErrorMessage name="name" component="div" />
           </div>
-          <div>
-            <label htmlFor={numberId}>Number:</label>
+          <div className={css["input-add-contact"]}>
+            <label htmlFor={numberId}>Number</label>
             <Field
               type="text"
               id={numberId}
               name="number"
               placeholder="Enter your number"
+              className={css["input-only"]}
             />
-            <ErrorMessage name="number" component="div" className={css.error} />
+            <ErrorMessage name="number" component="div" />
           </div>
-          <button type="submit">Add contact</button>
+          <button type="submit" className={css["button-add"]}>
+            Add contact
+          </button>
         </Form>
       </Formik>
-      <Toaster
-        position="bottom-center"
-        toastOptions={{
-          style: {
-            background: "#363636",
-            color: "#fff",
-          },
-          success: { duration: 2000 },
-        }}
-      />
     </>
   );
 };
