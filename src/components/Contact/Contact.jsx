@@ -1,4 +1,4 @@
-import { TiUser, TiPhone } from "react-icons/ti";
+import { FaPhone, FaUser } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/operations";
 import css from "./Contact.module.css";
@@ -20,11 +20,11 @@ const Contact = ({ contacts: { name, number, id } }) => {
     <div>
       <div>
         <p>
-          <TiUser />
+          <FaUser />
           {name}
         </p>
         <p>
-          <TiPhone />
+          <FaPhone />
           {number}
         </p>
       </div>
