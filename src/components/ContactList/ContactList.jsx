@@ -9,7 +9,7 @@ const ContactList = () => {
   return (
     <ul className={css["container-contacts"]}>
       {contacts.map((contact) => (
-        <li className={css.contactItem} key={contact.id}>
+        <li key={contact.id}>
           <Contact contacts={contact} />
         </li>
       ))}

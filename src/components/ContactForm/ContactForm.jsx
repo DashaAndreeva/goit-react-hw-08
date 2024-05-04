@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import * as Yup from "yup";
 import { useId } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import css from "./ContactForm.module.css";
 
 const validationSchema = Yup.object().shape({
@@ -29,6 +30,7 @@ const ContactForm = () => {
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
           dispatch(addContact(values));
+          toast.success("Contact added successfully!");
           resetForm();
         }}
       >
@@ -60,6 +62,16 @@ const ContactForm = () => {
           </button>
         </Form>
       </Formik>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+          success: { duration: 2000 },
+        }}
+      />
     </>
   );
 };

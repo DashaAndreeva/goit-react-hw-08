@@ -44,7 +44,7 @@ const LoginForm = () => {
               className={css["input"]}
             />
           </div>
-          <ErrorMessage name="email" component="div" className={css.error} />
+          <ErrorMessage name="email" component="div" />
         </div>
         <div>
           <div className={css["container"]}>
@@ -57,7 +57,7 @@ const LoginForm = () => {
               className={css["input"]}
             />
           </div>
-          <ErrorMessage name="password" component="div" className={css.error} />
+          <ErrorMessage name="password" component="div" />
         </div>
         <button type="submit" className={css["button-subm"]}>
           Log In
