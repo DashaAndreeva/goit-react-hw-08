@@ -1,61 +1,75 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import {addContact}  from "../../redux/contacts/operations";
 import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contacts/operations";
 import * as Yup from "yup";
-
+import toast, { Toaster } from "react-hot-toast";
+import { useId } from "react";
 import css from "./ContactForm.module.css";
 
-const initialValues = { name: "", tel: "" };
-
-const FeedbackSchema = Yup.object().shape({
+const validationSchema = Yup.object().shape({
   name: Yup.string()
-    .min(3, "Too Short!")
-    .max(50, "Too Long!")
+    .min(3, "Too short!")
+    .max(50, "Too long!")
     .required("Required"),
-  tel: Yup.string()
-    .min(3, "Too Short!")
-    .max(50, "Too Long!")
+  number: Yup.string()
+    .min(3, "Too short")
+    .max(50, "Too long!")
     .required("Required"),
 });
 
-export default function ContactForm() {
+const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
-    dispatch(addContact({ name: values.name, number: values.tel }));
-    resetForm();
-  };
+  const nameId = useId();
+  const numberId = useId();
 
   return (
-    <div>
+    <>
       <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={FeedbackSchema}
+        initialValues={{ name: "", number: "" }}
+        validationSchema={validationSchema}
+        onSubmit={(values, { resetForm }) => {
+          dispatch(addContact(values));
+          toast.success("Contact added successfully!");
+          resetForm();
+        }}
       >
-        <Form className={css["form"]}>
-          <div className={css["form-container"]}>
-            <div className={css["input-container"]}>
-              <label htmlFor="nameId" className={css["form-label"]}>
-                Name
-              </label>
-              <Field name="name" type="text" className={css["input-form"]} />
-              <ErrorMessage name="name" as="span" />
-            </div>
-
-            <div className={css["input-container"]}>
-              <label htmlFor="telId" className={css["form-label"]}>
-                Number
-              </label>
-              <Field name="tel" type="tel" className={css["input-form"]} />
-              <ErrorMessage name="tel" as="span" />
-            </div>
+        <Form>
+          <div>
+            <label htmlFor={nameId}>Name:</label>
+            <Field
+              type="text"
+              id={nameId}
+              name="name"
+              placeholder="Enter your name"
+            />
+            <ErrorMessage name="name" component="div" className={css.error} />
           </div>
-          <button type="submit" className={css["button-form"]}>
-            Add contact
-          </button>
+          <div>
+            <label htmlFor={numberId}>Number:</label>
+            <Field
+              type="text"
+              id={numberId}
+              name="number"
+              placeholder="Enter your number"
+            />
+            <ErrorMessage name="number" component="div" className={css.error} />
+          </div>
+          <button type="submit">Add contact</button>
         </Form>
       </Formik>
-    </div>
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+          success: { duration: 2000 },
+        }}
+      />
+    </>
   );
-}
+};
+
+export default ContactForm;
