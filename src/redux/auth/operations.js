@@ -10,7 +10,7 @@ export const setAuthHeader = (token) => {
 };
 
 export const clearAuthHeader = () => {
-  delete instance.defaults.headers.common.Authorization;
+  instance.defaults.headers.common.Authorization = "";
 };
 
 export const register = createAsyncThunk(
